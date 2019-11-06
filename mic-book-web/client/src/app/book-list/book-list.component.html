@@ -1,0 +1,13 @@
+<mat-card>
+  <mat-card-title>Lista Książek</mat-card-title>
+  <mat-card-content>
+    <mat-list>
+      <mat-list-item *ngFor="let book of books">
+        <img mat-list-avatar src="{{book.giphyUrl}}" alt="{{book.name}}">
+        <h3 mat-line>
+          <a mat-button [routerLink]="['/book-edit', book.id]">{{book.name}}</a>
+        </h3>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,26 @@
+<mat-card>
+  <form #carForm="ngForm" (ngSubmit)="save(carForm.value)">
+    <mat-card-header>
+      <mat-card-title><h2>{{book.name ? 'Edytuj' : 'Dodaj'}} Książkę</h2></mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <input type="hidden" name="href" [(ngModel)]="book.href">
+      <mat-form-field>
+        <input matInput placeholder="Tytuł Książki" [(ngModel)]="book.name"
+               required name="name" #name>
+      </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" type="submit"
+              [disabled]="!carForm.form.valid">Zapisz</button>
+      <button mat-raised-button color="secondary" (click)="remove(book.href)"
+              *ngIf="book.href" type="button">Usuń</button>
+      <a mat-button routerLink="/book-list">Anuluj</a>
+    </mat-card-actions>
+    <mat-card-footer>
+      <div class="giphy">
+        <img src="{{book.giphyUrl}}" alt="{{book.name}}">
+      </div>
+    </mat-card-footer>
+  </form>
+</mat-card>
