@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 
 @Injectable({providedIn: 'root'})
@@ -11,14 +11,16 @@ export class BookService {
   }
 
   getAll(): Observable<any> {
-    return this.http.get('//localhost:9090/books-list');
+    return this.http.get('//localhost:9090/books-list',);
   }
 
   get(id: string) {
-    return this.http.get(this.BOOK_API + '/' + id);
+
+    return this.http.get(this.BOOK_API + '/' + id,);
   }
 
   save(book: any): Observable<any> {
+
     let result: Observable<Object>;
     if (book['href']) {
       result = this.http.put(book.href, book);
@@ -29,6 +31,6 @@ export class BookService {
   }
 
   remove(href: string) {
-    return this.http.delete(href);
+    return this.http.delete(href,);
   }
 }

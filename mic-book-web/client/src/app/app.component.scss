@@ -1,0 +1,9 @@
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+
+:host {
+  position: absolute;
+  top: 64px; // here you must specify the height of your topbar
+  bottom: 0;
+  left: 0;
+  right: 0;
+}

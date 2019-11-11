@@ -1,7 +1,6 @@
 package com.micbook.app.micbook.controller;
 
 import com.micbook.app.micbook.model.Book;
-import com.micbook.app.micbook.model.User;
 import com.micbook.app.micbook.repository.BookRepository;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;

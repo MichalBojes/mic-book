@@ -1,0 +1,33 @@
+<mat-card>
+  <div class="login-container">
+    <form #loginForm="ngForm" (ngSubmit)="checkLogin()">
+      <mat-card-header>
+        <mat-card-title><h2>Zaloguj się</h2></mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div>
+          <mat-form-field>
+            <input matInput placeholder="login" [(ngModel)]="username"
+                   required name="username">
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field>
+            <input matInput placeholder="hasło" [type]="hide ? 'password' : 'text'" [(ngModel)]="password"
+                   required name="password">
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Ukryj hasło'"
+                    [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+          </mat-form-field>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" type="submit"
+                [disabled]="!loginForm.form.valid">Zaloguj się
+        </button>
+        <a mat-button routerLink="/book-list">Anuluj</a>
+      </mat-card-actions>
+    </form>
+  </div>
+</mat-card>

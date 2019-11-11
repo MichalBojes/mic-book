@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 export class User {
   constructor(
@@ -26,7 +26,6 @@ export class UserService {
   }
 
   getUsers() {
-    console.log("test call");
     return this.httpClient.get<User[]>(this.USER_API);
   }
 
