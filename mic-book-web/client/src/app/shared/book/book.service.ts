@@ -11,7 +11,7 @@ export class BookService {
   }
 
   getAll(): Observable<any> {
-    return this.http.get('//localhost:9090/cool-books');
+    return this.http.get('//localhost:9090/books-list');
   }
 
   get(id: string) {

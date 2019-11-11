@@ -9,12 +9,16 @@ import { MatButtonModule, MatCardModule, MatInputModule, MatListModule, MatToolb
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BookEditComponent } from './book-edit/book-edit.component';
 import { FormsModule } from '@angular/forms';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BookListComponent,
-    BookEditComponent
+    BookEditComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

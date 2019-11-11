@@ -1,10 +1,10 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { BookListComponent } from './book-list/book-list.component';
-import { BookEditComponent } from './book-edit/book-edit.component'
+import {NgModule} from '@angular/core';
+import {Routes, RouterModule} from '@angular/router';
+import {BookListComponent} from './book-list/book-list.component';
+import {BookEditComponent} from './book-edit/book-edit.component'
 
 const routes: Routes = [
-  { path: '', redirectTo: '/book-list', pathMatch: 'full' },
+  {path: '', redirectTo: '/book-list', pathMatch: 'full'},
   {
     path: 'book-list',
     component: BookListComponent
@@ -23,4 +23,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

@@ -19,8 +19,7 @@ public class MicBookApplication {
     @Bean
     ApplicationRunner init(BookRepository repository) {
         return args -> {
-            Stream.of("Ferrari", "Jaguar", "Porsche", "Lamborghini", "Bugatti",
-                    "AMC Gremlin", "Triumph Stag", "Ford Pinto", "Yugo GV").forEach(name -> {
+            Stream.of("Java Spring", "Angular", "Alicja w krainie czarów").forEach(name -> {
                 Book book = new Book();
                 book.setName(name);
                 //repository.save(book);
