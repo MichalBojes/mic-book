@@ -1,5 +1,6 @@
 package com.micbook.app.micbook.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -11,22 +12,22 @@ import javax.persistence.Id;
 @Entity
 @Data
 @NoArgsConstructor
-public class User {
+public class UserModel {
 
     @Id
     @GeneratedValue
     private Long id;
 
     @NonNull
-    private String name;
+    private String username;
 
     @NonNull
-    private String login;
-
-    @NonNull
+    @JsonIgnore
     private String password;
 
-    @NonNull
+    private String name;
     private String status;
+    private String email;
+    private Long age;
 
 }

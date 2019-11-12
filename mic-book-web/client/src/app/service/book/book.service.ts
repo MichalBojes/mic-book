@@ -15,8 +15,8 @@ export class BookService {
   }
 
   get(id: string) {
-
-    return this.http.get(this.BOOK_API + '/' + id,);
+    const link = this.BOOK_API + '/' + id;
+    return this.http.get(link);
   }
 
   save(book: any): Observable<any> {

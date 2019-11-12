@@ -8,18 +8,17 @@ import {map} from "rxjs/operators";
 
 export class AuthenticationService {
   public API = '//localhost:9090';
-  public AUTH_API = this.API + '/validateLogin';
+  public AUTH_API = this.API + '/authenticate';
 
   constructor(private httpClient: HttpClient) {
   }
 
   authenticate(username, password) {
-    const headers = new HttpHeaders({Authorization: 'Basic ' + btoa(username + ':' + password)});
-    return this.httpClient.get<LoginStatus>(this.AUTH_API, {headers}).pipe(
+    return this.httpClient.post<any>(this.AUTH_API, {username, password}).pipe(
       map(userData => {
           sessionStorage.setItem('username', username);
-          let authString = 'Basic ' + btoa(username + ':' + password);
-          sessionStorage.setItem('basicauth', authString);
+          let tokenStr = 'Bearer ' + userData.token;
+          sessionStorage.setItem('token', tokenStr);
           return userData;
         }
       )
@@ -28,7 +27,6 @@ export class AuthenticationService {
 
   isUserLoggedIn() {
     let user = sessionStorage.getItem('username')
-    console.log(!(user === null))
     return !(user === null)
   }
 
@@ -37,7 +35,3 @@ export class AuthenticationService {
   }
 }
 
-export class LoginStatus {
-  constructor(public status: string) {
-  }
-}

@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpBackend, HttpClient} from '@angular/common/http';
 import {map} from 'rxjs/operators';
 
 @Injectable({providedIn: 'root'})
@@ -7,9 +7,15 @@ export class GiphyService {
 
   // Public beta key: https://github.com/Giphy/GiphyAPI#public-beta-key
   giphyApi = '//api.giphy.com/v1/gifs/search?api_key=dc6zaTOxFJmzC&limit=1&q=';
+  private http: HttpClient;
 
-  constructor(public http: HttpClient) {
+  constructor(handler: HttpBackend) {
+    this.http = new HttpClient(handler);
   }
+
+
+  // constructor(private http: HttpClient) {
+  // }
 
   get(searchTerm) {
     const apiLink = this.giphyApi + searchTerm;

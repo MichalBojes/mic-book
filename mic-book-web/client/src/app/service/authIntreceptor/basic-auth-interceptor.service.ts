@@ -1,19 +1,21 @@
-import { Injectable } from '@angular/core';
-import {HttpHandler, HttpInterceptor, HttpRequest} from "@angular/common/http";
+import {Injectable} from '@angular/core';
+import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from "@angular/common/http";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class BasicAuthInterceptorService implements HttpInterceptor {
 
-  constructor() { }
+  constructor() {
+  }
 
-  intercept(req: HttpRequest<any>, next: HttpHandler) {
+  intercept(req: HttpRequest<any>, next: HttpHandler) : Observable<HttpEvent<any>> {
 
-    if (sessionStorage.getItem('username') && sessionStorage.getItem('basicauth')) {
+    if (sessionStorage.getItem('username') && sessionStorage.getItem('token')) {
       req = req.clone({
         setHeaders: {
-          Authorization: sessionStorage.getItem('basicauth')
+          Authorization: sessionStorage.getItem('token')
         }
       })
     }
