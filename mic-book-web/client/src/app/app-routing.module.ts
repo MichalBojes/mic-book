@@ -1,10 +1,12 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
-import {BookListComponent} from './book-list/book-list.component';
-import {BookEditComponent} from './book-edit/book-edit.component';
-import {LoginComponent} from './login/login.component';
-import {LogoutComponent} from "./logout/logout.component";
+import {BookListComponent} from './component/book-list/book-list.component';
+import {BookEditComponent} from './component/book-edit/book-edit.component';
+import {LoginComponent} from './component/login/login.component';
+import {LogoutComponent} from "./component/logout/logout.component";
 import {AuthInterceptorService} from "./service/authIntreceptor/auth-interceptor.service";
+import {RegistrationComponent} from "./component/registration/registration.component";
+import {AccountDetailsComponent} from "./component/account-details/account-details.component";
 
 const routes: Routes = [
   {
@@ -35,6 +37,15 @@ const routes: Routes = [
     component: LogoutComponent,
     canActivate: [AuthInterceptorService]
   },
+  {
+    path: 'registration',
+    component: RegistrationComponent
+  },
+  {
+    path: 'myAccount',
+    component: AccountDetailsComponent
+  },
+
 ];
 
 @NgModule({

@@ -15,5 +15,25 @@ public class Book {
     private Long id;
 
     @NonNull
-    private String name;
+    private String title;
+
+    private String otherTitle;
+
+    @NonNull
+    private String authorName;
+
+    private String publisher;
+
+    private String publicationCity;
+
+    private int publicationYear;
+
+    @NonNull
+    private int numberOfAvailable;
+
+    private String topic;
+
+    @NonNull
+    private String publicationType;
+
 }

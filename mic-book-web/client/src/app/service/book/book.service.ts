@@ -11,7 +11,8 @@ export class BookService {
   }
 
   getAll(): Observable<any> {
-    return this.http.get('//localhost:9090/books-list',);
+    const link = this.API + '/' + 'books-list';
+    return this.http.get(link);
   }
 
   get(id: string) {

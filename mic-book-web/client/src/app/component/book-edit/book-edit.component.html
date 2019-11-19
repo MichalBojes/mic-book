@@ -1,5 +1,5 @@
 <mat-card>
-  <form #carForm="ngForm" (ngSubmit)="save(carForm.value)">
+  <form #bookForm="ngForm" (ngSubmit)="save(bookForm.value)">
     <mat-card-header>
       <mat-card-title><h2>{{book.name ? 'Edytuj' : 'Dodaj'}} Książkę</h2></mat-card-title>
     </mat-card-header>
@@ -12,7 +12,7 @@
     </mat-card-content>
     <mat-card-actions>
       <button mat-raised-button color="primary" type="submit"
-              [disabled]="!carForm.form.valid">Zapisz</button>
+              [disabled]="!bookForm.form.valid">Zapisz</button>
       <button mat-raised-button color="secondary" (click)="remove(book.href)"
               *ngIf="book.href" type="button">Usuń</button>
       <a mat-button routerLink="/book-list">Anuluj</a>

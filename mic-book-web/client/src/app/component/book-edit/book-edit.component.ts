@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {ActivatedRoute, Router} from '@angular/router';
-import {BookService} from '../service/book/book.service';
-import {GiphyService} from '../service/giphy/giphy.service';
+import {BookService} from '../../service/book/book.service';
+import {GiphyService} from '../../service/giphy/giphy.service';
 import {NgForm} from '@angular/forms';
 
 

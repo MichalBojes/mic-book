@@ -16,7 +16,7 @@
             <input matInput placeholder="hasło" [type]="hide ? 'password' : 'text'" [(ngModel)]="password"
                    required name="password">
             <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Ukryj hasło'"
-                    [attr.aria-pressed]="hide">
+                    [attr.aria-pressed]="hide" (keyup.enter)="checkLogin()">
               <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
           </mat-form-field>

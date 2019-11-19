@@ -1,6 +1,5 @@
 package com.micbook.app.micbook.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -8,27 +7,28 @@ import lombok.NonNull;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.util.Date;
 
 @Entity
 @Data
 @NoArgsConstructor
-public class UserModel {
-
+public class Reservation {
     @Id
     @GeneratedValue
     private Long id;
 
     @NonNull
-    private String username;
+    private UserModel user;
 
     @NonNull
-    @JsonIgnore
-    private String password;
+    private Book book;
 
-    private String name;
-    private String surname;
-    private String status;
-    private String email;
-    private Long age;
+    private float bill;
+
+    private Date reservationDate;
+
+    private Date lendDate;
+
+    private Date returnDate;
 
 }

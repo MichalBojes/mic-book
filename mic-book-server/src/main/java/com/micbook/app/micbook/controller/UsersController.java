@@ -1,12 +1,11 @@
 package com.micbook.app.micbook.controller;
 
+import com.micbook.app.micbook.dto.UserDTO;
 import com.micbook.app.micbook.model.LoginStatus;
 import com.micbook.app.micbook.model.UserModel;
 import com.micbook.app.micbook.repository.UserRepository;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.micbook.app.micbook.service.JwtUserDetailsService;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 import java.util.stream.Collectors;
@@ -14,9 +13,11 @@ import java.util.stream.Collectors;
 @RestController
 public class UsersController {
     private UserRepository repository;
+    private JwtUserDetailsService service;
 
-    public UsersController(UserRepository repository) {
+    public UsersController(UserRepository repository, JwtUserDetailsService service) {
         this.repository = repository;
+        this.service = service;
     }
 
     @GetMapping("/users-list")
@@ -31,6 +32,13 @@ public class UsersController {
     @CrossOrigin(origins = "http://localhost:4200")
     public LoginStatus validateLogin() {
         return new LoginStatus("User successfully authenticated");
+    }
+
+    @PostMapping
+    @RequestMapping({"/users"})
+    @CrossOrigin(origins = "http://localhost:4200")
+    public UserModel create(@RequestBody UserDTO user) {
+        return service.save(user);
     }
 
 }

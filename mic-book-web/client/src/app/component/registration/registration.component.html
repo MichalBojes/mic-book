@@ -1,0 +1,53 @@
+<mat-card>
+  <div class="registration-container">
+    <form #registrationForm="ngForm" (ngSubmit)="checkRegistration()">
+      <mat-card-header>
+        <mat-card-title><h2>Rejestracja</h2></mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div>
+          <mat-form-field>
+            <input matInput placeholder="nazwa użytkownika" [(ngModel)]="user.username"
+                   required name="username">
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field>
+            <input matInput placeholder="hasło" [(ngModel)]="user.password"
+                   required name="password">
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field>
+            <input matInput placeholder="imię" [(ngModel)]="user.name"
+                   required name="name">
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field>
+            <input matInput placeholder="nazwisko" [(ngModel)]="user.surname"
+                   required name="surname">
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field>
+            <input matInput placeholder="email" type="email" [(ngModel)]="user.email"
+                   required name="email">
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field>
+            <input matInput placeholder="wiek" type="number" [(ngModel)]="user.age"
+                   required name="age">
+          </mat-form-field>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" type="submit"
+                [disabled]="!registrationForm.form.valid">Zarejestruj się
+        </button>
+        <a mat-button routerLink="/book-list">Anuluj</a>
+      </mat-card-actions>
+    </form>
+  </div>
+</mat-card>

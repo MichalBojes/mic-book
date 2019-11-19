@@ -26,7 +26,7 @@ public class BooksController {
     }
 
     private boolean isEmptyName(Book book) {
-        return !book.getName().equals("") &&
-                !book.getName().equals(" ");
+        return !book.getTitle().equals("") &&
+                !book.getTitle().equals(" ");
     }
 }

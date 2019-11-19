@@ -4,9 +4,12 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 export class User {
   constructor(
     public id: string,
-    public name: string,
-    public login: string,
+    public username: string,
     public password: string,
+    public name: string,
+    public surname: string,
+    public email: string,
+    public age: string,
     public status: string,
   ) {
   }
