@@ -17,11 +17,11 @@ public class Reservation {
     @GeneratedValue
     private Long id;
 
-    @NonNull
-    private UserModel user;
-
-    @NonNull
-    private Book book;
+//    @NonNull
+//    private UserModel user;
+//
+//    @NonNull
+//    private Book book;
 
     private float bill;
 
@@ -30,5 +30,7 @@ public class Reservation {
     private Date lendDate;
 
     private Date returnDate;
+
+    private boolean isEnded;
 
 }

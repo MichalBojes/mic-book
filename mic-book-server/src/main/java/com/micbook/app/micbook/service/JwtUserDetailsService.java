@@ -45,4 +45,16 @@ public class JwtUserDetailsService implements UserDetailsService {
         return userDao.save(newUser);
     }
 
+    public UserModel update(UserDTO user) {
+        UserModel newUser = userDao.findByUsername(user.getUsername());
+        if (user.getPassword() != null && !user.getPassword().equals("")) {
+            newUser.setPassword(bcryptEncoder.encode(user.getPassword()));
+        }
+        newUser.setName(user.getName());
+        newUser.setSurname(user.getSurname());
+        newUser.setEmail(user.getEmail());
+        newUser.setAge(user.getAge());
+        return userDao.save(newUser);
+    }
+
 }

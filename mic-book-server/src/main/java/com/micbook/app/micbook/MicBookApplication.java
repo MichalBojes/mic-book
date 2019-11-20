@@ -21,7 +21,7 @@ public class MicBookApplication {
         return args -> {
             Stream.of("Java Spring", "Angular", "Alicja w krainie czarów").forEach(name -> {
                 Book book = new Book();
-                book.setName(name);
+                book.setTitle(name);
                 //repository.save(book);
             });
             repository.findAll().forEach(System.out::println);

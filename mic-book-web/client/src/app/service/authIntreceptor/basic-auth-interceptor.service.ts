@@ -10,8 +10,8 @@ export class BasicAuthInterceptorService implements HttpInterceptor {
   constructor() {
   }
 
-  intercept(req: HttpRequest<any>, next: HttpHandler) : Observable<HttpEvent<any>> {
-
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    console.log(req.url)
     if (sessionStorage.getItem('username') && sessionStorage.getItem('token')) {
       req = req.clone({
         setHeaders: {

@@ -43,7 +43,8 @@ const routes: Routes = [
   },
   {
     path: 'myAccount',
-    component: AccountDetailsComponent
+    component: AccountDetailsComponent,
+    canActivate: [AuthInterceptorService]
   },
 
 ];

@@ -1,20 +1,8 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
+import {User} from "../../model/user";
+import {Observable} from "rxjs";
 
-export class User {
-  constructor(
-    public id: string,
-    public username: string,
-    public password: string,
-    public name: string,
-    public surname: string,
-    public email: string,
-    public age: string,
-    public status: string,
-  ) {
-  }
-
-}
 
 @Injectable({
   providedIn: 'root'
@@ -28,8 +16,10 @@ export class UserService {
   ) {
   }
 
-  getUsers() {
-    return this.httpClient.get<User[]>(this.USER_API);
+  getUser(login: string) {
+    const link = this.USER_API + '?username=' + login;
+    console.log(login)
+    return this.httpClient.get<User>('//localhost:9090/users?username=admin');
   }
 
   public deleteUser(user) {
@@ -39,4 +29,9 @@ export class UserService {
   public createUser(user) {
     return this.httpClient.post<User>(this.USER_API, user);
   }
+
+  public updateUser(user) {
+    return this.httpClient.put<User>(this.USER_API, user);
+  }
+
 }

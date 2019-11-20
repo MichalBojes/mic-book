@@ -1,19 +1,14 @@
 <mat-card>
   <div class="account-details-container">
-    <form #registrationForm="ngForm" (ngSubmit)="updateUser()">
+    <form #userForm="ngForm" (ngSubmit)="updateUser()">
       <mat-card-header>
-        <mat-card-title><h2>Edycja profilu</h2></mat-card-title>
+        <mat-card-title><h2>Edycja profilu</h2>  {{user.username}} </mat-card-title>
       </mat-card-header>
       <mat-card-content>
         <div>
           <mat-form-field>
-
-          </mat-form-field>
-        </div>
-        <div>
-          <mat-form-field>
-            <input matInput placeholder="hasło" [(ngModel)]="user.password"
-                   required name="password">
+            <input matInput placeholder="nowe hasło" [(ngModel)]="user.password"
+                   name="password">
           </mat-form-field>
         </div>
         <div>
@@ -43,7 +38,7 @@
       </mat-card-content>
       <mat-card-actions>
         <button mat-raised-button color="primary" type="submit"
-                [disabled]="!registrationForm.form.valid">Zarejestruj się
+                [disabled]="!userForm.form.valid">Zaktualizuj dane
         </button>
         <a mat-button routerLink="/book-list">Anuluj</a>
       </mat-card-actions>
