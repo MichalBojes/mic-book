@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { GiphyService } from './giphy.service';
+import { MyIntreceptorService } from './my-intreceptor.service';
 
-describe('GiphyService', () => {
+describe('MyIntreceptorService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: GiphyService = TestBed.get(GiphyService);
+    const service: MyIntreceptorService = TestBed.get(MyIntreceptorService);
     expect(service).toBeTruthy();
   });
 });

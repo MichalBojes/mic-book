@@ -31,6 +31,9 @@ public class Book {
     @NonNull
     private int numberOfAvailable;
 
+    @NonNull
+    private int amount;
+
     private String topic;
 
     @NonNull

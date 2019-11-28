@@ -19,7 +19,7 @@ export class UserService {
   getUser(login: string) {
     const link = this.USER_API + '?username=' + login;
     console.log(login)
-    return this.httpClient.get<User>('//localhost:9090/users?username=admin');
+    return this.httpClient.get<User>('//localhost:9090/users?username=' + login);
   }
 
   public deleteUser(user) {

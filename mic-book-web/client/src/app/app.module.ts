@@ -8,15 +8,16 @@ import {BookListComponent} from './component/book-list/book-list.component';
 import {MatButtonModule, MatCardModule, MatInputModule, MatListModule, MatToolbarModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {BookEditComponent} from './component/book-edit/book-edit.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HeaderComponent} from './header/header.component';
 import {LoginComponent} from './component/login/login.component';
 import {MatIconModule} from "@angular/material/icon";
 import {LogoutComponent} from './component/logout/logout.component';
 import {MatMenuModule} from "@angular/material/menu";
-import {BasicAuthInterceptorService} from './service/authIntreceptor/basic-auth-interceptor.service';
-import { RegistrationComponent } from './component/registration/registration.component';
-import { AccountDetailsComponent } from './component/account-details/account-details.component';
+import {RegistrationComponent} from './component/registration/registration.component';
+import {AccountDetailsComponent} from './component/account-details/account-details.component';
+import {MyIntreceptorService} from "./service/intreceptor/my-intreceptor.service";
+import {MatSelectModule} from "@angular/material/select";
 
 
 @NgModule({
@@ -42,11 +43,13 @@ import { AccountDetailsComponent } from './component/account-details/account-det
     MatToolbarModule,
     FormsModule,
     MatIconModule,
-    MatMenuModule
+    MatMenuModule,
+    MatSelectModule,
+    ReactiveFormsModule
   ],
   providers: [
     {
-      provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptorService, multi: true
+      provide: HTTP_INTERCEPTORS, useClass: MyIntreceptorService, multi: true
     }
   ],
   bootstrap: [AppComponent]

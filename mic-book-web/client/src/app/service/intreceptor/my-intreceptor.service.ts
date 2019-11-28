@@ -5,7 +5,7 @@ import {Observable} from "rxjs";
 @Injectable({
   providedIn: 'root'
 })
-export class BasicAuthInterceptorService implements HttpInterceptor {
+export class MyIntreceptorService implements HttpInterceptor {
 
   constructor() {
   }
@@ -13,14 +13,15 @@ export class BasicAuthInterceptorService implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     console.log(req.url)
     if (sessionStorage.getItem('username') && sessionStorage.getItem('token')) {
-      req = req.clone({
-        setHeaders: {
-          Authorization: sessionStorage.getItem('token')
-        }
-      })
+      const clonedRequest = req.clone({
+          setHeaders: {
+            Authorization: sessionStorage.getItem('token')
+          }
+        });
+      console.log(next)
+      return next.handle(clonedRequest);
+    } else {
+      return next.handle(req);
     }
-
-    return next.handle(req);
-
   }
 }

@@ -1,26 +1,82 @@
 <mat-card>
-  <form #bookForm="ngForm" (ngSubmit)="save(bookForm.value)">
-    <mat-card-header>
-      <mat-card-title><h2>{{book.name ? 'Edytuj' : 'Dodaj'}} Książkę</h2></mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <input type="hidden" name="href" [(ngModel)]="book.href">
-      <mat-form-field>
-        <input matInput placeholder="Tytuł Książki" [(ngModel)]="book.name"
-               required name="name" #name>
-      </mat-form-field>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-raised-button color="primary" type="submit"
-              [disabled]="!bookForm.form.valid">Zapisz</button>
-      <button mat-raised-button color="secondary" (click)="remove(book.href)"
-              *ngIf="book.href" type="button">Usuń</button>
-      <a mat-button routerLink="/book-list">Anuluj</a>
-    </mat-card-actions>
-    <mat-card-footer>
-      <div class="giphy">
-        <img src="{{book.giphyUrl}}" alt="{{book.name}}">
-      </div>
-    </mat-card-footer>
-  </form>
+  <div class="book-edit-container">
+    <form #bookForm="ngForm" (ngSubmit)="updateBook()">
+      <mat-card-header>
+        <mat-card-title><h2>{{isEdit ? 'Edytuj' : 'Dodaj'}} Książkę</h2></mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div>
+          <mat-form-field style="width:360px !important">
+            <input matInput placeholder="Tytuł publikacji" [(ngModel)]="book.title"
+                   required name="title" #title>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field style="width:360px !important">
+            <input matInput placeholder="Inny tytuł (tłumaczenie tytułu)" [(ngModel)]="book.otherTitle"
+                   name="otherTitle" #otherTitle>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field style="width:360px !important">
+            <input matInput placeholder="Autor" [(ngModel)]="book.authorName"
+                   required name="authorName" #authorName>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field>
+            <input matInput placeholder="Wydawnictwo" [(ngModel)]="book.publisher"
+                   name="publisher" #publisher>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput placeholder="Lokalizacja wydawnictwa" [(ngModel)]="book.publicationCity"
+                   name="publicationCity" #publicationCity>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field style="width:100px !important">
+            <input matInput placeholder="Rok publikacji" [(ngModel)]="book.publicationYear"
+                   type="number" name="publicationYear" #publicationYear>
+          </mat-form-field>
+
+          <mat-form-field style="width:140px !important">
+            <input matInput placeholder="Ilość egzemplarzy" [(ngModel)]="book.amount"
+                   required type="number" name="amount" #amount>
+          </mat-form-field>
+          <mat-form-field style="width:120px !important">
+            <input matInput placeholder="Ilość dostępnych" [(ngModel)]="book.numberOfAvailable"
+                   required type="number" name="numberOfAvailable" #numberOfAvailable>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field>
+            <input matInput placeholder="Tematyka" [(ngModel)]="book.topic"
+                   name="topic" #topic>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Typ publikacji</mat-label>
+            <mat-select [(value)]="book.publicationType" required #publicationType>
+              <mat-option value="Książka"> Książka</mat-option>
+              <mat-option value="Artykuł"> Artykuł</mat-option>
+              <mat-option value="Czasopismo"> Czasopismo</mat-option>
+              <mat-option value="Materiały Konferencyjne"> Materiały Konferencyjne</mat-option>
+              <mat-option value="Raport"> Raport</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" type="submit"
+                [disabled]="!bookForm.form.valid">Zapisz
+        </button>
+        <button mat-raised-button *ngIf="isEdit" color="warn"
+                type="button" (click)="deleteBook()">Usuń
+        </button>
+        <a mat-button routerLink="/book-list">Anuluj</a>
+      </mat-card-actions>
+    </form>
+  </div>
 </mat-card>

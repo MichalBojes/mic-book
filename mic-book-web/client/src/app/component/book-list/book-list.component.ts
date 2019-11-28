@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import { BookService } from '../../service/book/book.service';
-import { GiphyService } from '../../service/giphy/giphy.service';
+import {BookService} from '../../service/book/book.service';
+import {Router} from "@angular/router";
+import {Book} from "../../model/book";
 
 @Component({
   selector: 'app-book-list',
@@ -11,15 +12,18 @@ export class BookListComponent implements OnInit {
 
   books: Array<any>;
 
-  constructor(private bookService: BookService, private giphyService: GiphyService) {
+  constructor(
+    private bookService: BookService,
+    private router: Router) {
   }
 
   ngOnInit() {
     this.bookService.getAll().subscribe(data => {
       this.books = data;
-      for (const book of this.books) {
-        this.giphyService.get(book.name).subscribe(url => book.giphyUrl = url);
-      }
     });
+  }
+
+  goToEdit(id) {
+    this.router.navigate(['/book-edit/' + id]);
   }
 }

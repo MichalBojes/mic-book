@@ -2,8 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {ActivatedRoute, Router} from '@angular/router';
 import {BookService} from '../../service/book/book.service';
-import {GiphyService} from '../../service/giphy/giphy.service';
-import {NgForm} from '@angular/forms';
+import {Book} from "../../model/book";
 
 
 @Component({
@@ -12,51 +11,61 @@ import {NgForm} from '@angular/forms';
   styleUrls: ['./book-edit.component.scss']
 })
 export class BookEditComponent implements OnInit {
-  book: any = {};
+  book = new Book(
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "");
 
+  isEdit: boolean;
   sub: Subscription;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
-              private bookService: BookService,
-              private giphyService: GiphyService) {
+              private bookService: BookService
+  ) {
   }
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
       const id = params['id'];
       if (id) {
-        this.bookService.get(id).subscribe((book: any) => {
-          if (book) {
-            this.book = book;
-            this.book.href = book._links.self.href;
-            this.giphyService.get(book.name).subscribe(url => book.giphyUrl = url);
-          } else {
-            console.log(`BOOK with id '${id}' not found, returning to list`);
-            this.gotoList();
-          }
-        });
+        this.isEdit = true;
+        this.bookService.getBook(id).subscribe(data => {
+          this.book = data;
+        })
+      } else {
+        this.isEdit = false;
       }
     });
+
   }
 
   ngOnDestroy() {
     this.sub.unsubscribe();
   }
 
-  gotoList() {
-    this.router.navigate(['/book-list']);
+  updateBook() {
+    this.bookService.updateBook(this.book).subscribe(
+      data => {
+        this.router.navigate([''])
+      }
+    );
   }
 
-  save(form: NgForm) {
-    this.bookService.save(form).subscribe(result => {
-      this.gotoList();
-    }, error => console.error(error));
+  deleteBook() {
+    this.bookService.remove(this.book.id).subscribe(
+      data => {
+        this.router.navigate([''])
+      }
+    );
   }
 
-  remove(href) {
-    this.bookService.remove(href).subscribe(result => {
-      this.gotoList();
-    }, error => console.error(error));
-  }
 }
