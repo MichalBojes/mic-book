@@ -18,6 +18,9 @@ import {RegistrationComponent} from './component/registration/registration.compo
 import {AccountDetailsComponent} from './component/account-details/account-details.component';
 import {MyIntreceptorService} from "./service/intreceptor/my-intreceptor.service";
 import {MatSelectModule} from "@angular/material/select";
+import {SearchListComponent} from './component/search-list/search-list.component';
+import {MatAutocompleteModule} from "@angular/material/autocomplete";
+import { SearchResultComponent } from './component/search-result/search-result.component';
 
 
 @NgModule({
@@ -29,7 +32,9 @@ import {MatSelectModule} from "@angular/material/select";
     LoginComponent,
     LogoutComponent,
     RegistrationComponent,
-    AccountDetailsComponent
+    AccountDetailsComponent,
+    SearchListComponent,
+    SearchResultComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +50,8 @@ import {MatSelectModule} from "@angular/material/select";
     MatIconModule,
     MatMenuModule,
     MatSelectModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatAutocompleteModule
   ],
   providers: [
     {

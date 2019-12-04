@@ -7,16 +7,22 @@ import {LogoutComponent} from "./component/logout/logout.component";
 import {AuthInterceptorService} from "./service/authIntreceptor/auth-interceptor.service";
 import {RegistrationComponent} from "./component/registration/registration.component";
 import {AccountDetailsComponent} from "./component/account-details/account-details.component";
+import {SearchListComponent} from "./component/search-list/search-list.component";
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/book-list',
+    redirectTo: '/search-list',
     pathMatch: 'full'
   },
   {
+    path: 'search-list',
+    component: SearchListComponent
+  },
+  {
     path: 'book-list',
-    component: BookListComponent
+    component: BookListComponent,
+    canActivate: [AuthInterceptorService]
   },
   {
     path: 'book-add',

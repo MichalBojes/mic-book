@@ -1,0 +1,22 @@
+<section class="filter-wrapper">
+  <!--  <div class="keyword-wrapper">-->
+  <!--    <input type="text" id="keyword" placeholder="Wyszukaj książkę" [formControl]="queryField" autofocus/>-->
+  <!--  </div>-->
+  <!--  <ul class="filter-select">-->
+  <!--    <li *ngFor="let result of results" class="filter-select-list">-->
+  <!--      <p class="artist-name">-->
+  <!--        {{result.name}}-->
+  <!--      </p>-->
+  <!--      <span class="tags" *ngFor='let genre of result?.genres | slice:0:6'>-->
+  <!--        {{genre}}-->
+  <!--      </span>-->
+  <!--  </ul>-->
+  <form class="example-form">
+    <mat-form-field>
+      <input type="text" placeholder="Wyszukaj książkę" matInput [formControl]="querySearchField" [matAutocomplete]="auto">
+    </mat-form-field>
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let option of options" [value]="option.title">{{option.title}}</mat-option>
+    </mat-autocomplete>
+  </form>
+</section>

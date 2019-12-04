@@ -28,4 +28,10 @@ export class BookService {
   remove(id) {
     return this.http.delete(this.BOOK_API + '/delete?id=' + id);
   }
+
+  search(queryString: string): Observable<any> {
+    let URL = this.BOOK_API + '/search?limit=10&query=' + queryString;
+    return this.http.get(URL);
+  }
+
 }

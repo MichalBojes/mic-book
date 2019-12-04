@@ -2,17 +2,26 @@ package com.micbook.app.micbook.controller;
 
 import com.micbook.app.micbook.model.Book;
 import com.micbook.app.micbook.repository.BookRepository;
+import com.micbook.app.micbook.service.HibernateSearchService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
 public class BooksController {
+
+    //    @Autowired
     private BookRepository repository;
 
-    public BooksController(BookRepository repository) {
+    //    @Autowired
+    private HibernateSearchService searchservice;
+
+    public BooksController(BookRepository repository, HibernateSearchService searchservice) {
         this.repository = repository;
+        this.searchservice = searchservice;
     }
 
     @GetMapping("/books/list")
@@ -36,6 +45,19 @@ public class BooksController {
     @CrossOrigin(origins = "http://localhost:4200")
     public void deleteBook(@RequestParam(name = "id") Long id) {
         repository.deleteById(id);
+    }
+
+    @GetMapping("/books/search")
+    @CrossOrigin(origins = "http://localhost:4200")
+    public Collection<Book> searchBooks(
+            @RequestParam(name = "query") String query,
+            @RequestParam(name = "limit", required = false) Long limit) {
+        List<Book> result =
+         searchservice.search(query)
+                .stream()
+                .limit(limit)
+                .collect(Collectors.toList());
+        return result;
     }
 
     private boolean isEmptyName(Book book) {

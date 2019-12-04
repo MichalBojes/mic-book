@@ -11,13 +11,12 @@ export class MyIntreceptorService implements HttpInterceptor {
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    console.log(req.url)
     if (sessionStorage.getItem('username') && sessionStorage.getItem('token')) {
       const clonedRequest = req.clone({
-          setHeaders: {
-            Authorization: sessionStorage.getItem('token')
-          }
-        });
+        setHeaders: {
+          Authorization: sessionStorage.getItem('token')
+        }
+      });
       console.log(next)
       return next.handle(clonedRequest);
     } else {
