@@ -8,6 +8,8 @@ import {AuthInterceptorService} from "./service/authIntreceptor/auth-interceptor
 import {RegistrationComponent} from "./component/registration/registration.component";
 import {AccountDetailsComponent} from "./component/account-details/account-details.component";
 import {SearchListComponent} from "./component/search-list/search-list.component";
+import {BookBorrowComponent} from "./component/book-borrow/book-borrow.component";
+import {UserListComponent} from "./component/user-list/user-list.component";
 
 const routes: Routes = [
   {
@@ -35,6 +37,16 @@ const routes: Routes = [
     canActivate: [AuthInterceptorService]
   },
   {
+    path: 'book-borrow/:id',
+    component: BookBorrowComponent,
+    canActivate: [AuthInterceptorService]
+  },
+  {
+    path: 'user-list',
+    component: UserListComponent,
+    canActivate: [AuthInterceptorService]
+  },
+  {
     path: 'login',
     component: LoginComponent
   },
@@ -49,6 +61,11 @@ const routes: Routes = [
   },
   {
     path: 'myAccount',
+    component: AccountDetailsComponent,
+    canActivate: [AuthInterceptorService]
+  },
+  {
+    path: 'edit-user/:id',
     component: AccountDetailsComponent,
     canActivate: [AuthInterceptorService]
   },

@@ -1,4 +1,4 @@
-<mat-card>
+<mat-card class="card-center-class">
   <div class="book-edit-container">
     <form #bookForm="ngForm" (ngSubmit)="updateBook()">
       <mat-card-header>
@@ -75,7 +75,7 @@
         <button mat-raised-button *ngIf="isEdit" color="warn"
                 type="button" (click)="deleteBook()">Usuń
         </button>
-        <a mat-button routerLink="/book-list">Anuluj</a>
+        <a mat-button routerLink="/search-list">Anuluj</a>
       </mat-card-actions>
     </form>
   </div>

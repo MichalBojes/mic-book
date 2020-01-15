@@ -18,12 +18,12 @@ export class UserService {
 
   getUser(login: string) {
     const link = this.USER_API + '?username=' + login;
-    console.log(login)
     return this.httpClient.get<User>('//localhost:9090/users?username=' + login);
   }
 
   public deleteUser(user) {
-    return this.httpClient.delete<User>(this.USER_API + "/" + user.id);
+    console.log('testowanko2')
+    return this.httpClient.delete<User>(this.USER_API, user);
   }
 
   public createUser(user) {
@@ -31,7 +31,11 @@ export class UserService {
   }
 
   public updateUser(user) {
+    console.log('testowanko3')
     return this.httpClient.put<User>(this.USER_API, user);
   }
 
+  public getAllUsers(): Observable<any> {
+    return this.httpClient.get('//localhost:9090/users-list');
+  }
 }

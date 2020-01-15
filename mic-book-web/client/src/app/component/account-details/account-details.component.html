@@ -1,4 +1,4 @@
-<mat-card>
+<mat-card class="card-center-class">
   <div class="account-details-container">
     <form #userForm="ngForm" (ngSubmit)="updateUser()">
       <mat-card-header>
@@ -40,7 +40,10 @@
         <button mat-raised-button color="primary" type="submit"
                 [disabled]="!userForm.form.valid">Zaktualizuj dane
         </button>
-        <a mat-button routerLink="/book-list">Anuluj</a>
+        <a mat-button (mouseup)="goBack()">Anuluj</a>
+        <button mat-raised-button *ngIf="authservice.isUserAdmin()" color="warn"
+                type="button" (click)="deleteUser(user)">Usuń
+        </button>
       </mat-card-actions>
     </form>
   </div>

@@ -20,9 +20,18 @@
         <mat-icon>person_add</mat-icon>
         <span>Rejestracja</span>
       </button>
+      <button *ngIf="loginService.isUserLoggedIn() && !loginService.isUserAdmin()" mat-menu-item
+              routerLink="/myBorrows">
+        <mat-icon>face</mat-icon>
+        <span>Moje wypożyczenia</span>
+      </button>
       <button *ngIf="loginService.isUserLoggedIn()" mat-menu-item routerLink="/myAccount">
         <mat-icon>face</mat-icon>
         <span>Moje konto</span>
+      </button>
+      <button *ngIf="loginService.isUserLoggedIn() && loginService.isUserAdmin()" mat-menu-item routerLink="/user-list">
+        <mat-icon>group</mat-icon>
+        <span>Użytkownicy</span>
       </button>
       <button *ngIf="loginService.isUserLoggedIn()" mat-menu-item routerLink="/logout">
         <mat-icon>exit_to_app</mat-icon>

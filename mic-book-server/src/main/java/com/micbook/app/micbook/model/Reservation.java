@@ -4,9 +4,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -17,11 +15,13 @@ public class Reservation {
     @GeneratedValue
     private Long id;
 
-//    @NonNull
-//    private UserModel user;
-//
-//    @NonNull
-//    private Book book;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "userId", referencedColumnName = "id")
+    private UserModel user;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "bookId", referencedColumnName = "id")
+    private Book book;
 
     private float bill;
 

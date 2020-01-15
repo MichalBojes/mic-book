@@ -32,7 +32,11 @@ export class SearchListComponent implements OnInit {
         distinctUntilChanged(),
         switchMap(query => {
           console.log("wyszukiwanie")
-          return this.searchService.search(query)
+          if (query !== '') {
+            return this.searchService.search(query)
+          } else {
+            this.options = null;
+          }
         })
       )
       .subscribe(result => {

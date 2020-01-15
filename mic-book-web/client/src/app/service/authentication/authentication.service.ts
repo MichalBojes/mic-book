@@ -9,6 +9,7 @@ import {map} from "rxjs/operators";
 export class AuthenticationService {
   public API = '//localhost:9090';
   public AUTH_API = this.API + '/authenticate';
+  public ROLE_API = this.API + '/userRole?username=';
 
   constructor(private httpClient: HttpClient) {
   }
@@ -19,15 +20,27 @@ export class AuthenticationService {
           sessionStorage.setItem('username', username);
           let tokenStr = 'Bearer ' + userData.token;
           sessionStorage.setItem('token', tokenStr);
+          this.getUserRole(username);
           return userData;
         }
       )
     );
   }
 
+  getUserRole(username) {
+    this.httpClient
+      .get<any>(this.ROLE_API + username)
+      .subscribe(data => sessionStorage.setItem('role', data.response));
+  }
+
   isUserLoggedIn() {
     let user = sessionStorage.getItem('username')
     return !(user === null)
+  }
+
+  isUserAdmin() {
+    let role = sessionStorage.getItem('role')
+    return role === 'A'
   }
 
   getUserLogin() {
@@ -37,6 +50,7 @@ export class AuthenticationService {
 
   logOut() {
     sessionStorage.removeItem('username')
+    sessionStorage.removeItem('role')
   }
 }
 

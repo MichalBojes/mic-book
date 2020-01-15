@@ -52,12 +52,15 @@ public class BooksController {
     public Collection<Book> searchBooks(
             @RequestParam(name = "query") String query,
             @RequestParam(name = "limit", required = false) Long limit) {
-        List<Book> result =
-         searchservice.search(query)
-                .stream()
-                .limit(limit)
-                .collect(Collectors.toList());
-        return result;
+        if (query != null && !query.equals("")) {
+            List<Book> result =
+                    searchservice.search(query)
+                            .stream()
+                            .limit(limit)
+                            .collect(Collectors.toList());
+            return result;
+        }
+        return null;
     }
 
     private boolean isEmptyName(Book book) {

@@ -20,8 +20,10 @@ import {MyIntreceptorService} from "./service/intreceptor/my-intreceptor.service
 import {MatSelectModule} from "@angular/material/select";
 import {SearchListComponent} from './component/search-list/search-list.component';
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
-import { SearchResultComponent } from './component/search-result/search-result.component';
-
+import {SearchResultComponent} from './component/search-result/search-result.component';
+import { UserListComponent } from './component/user-list/user-list.component';
+import { BorrowListComponent } from './component/borrow-list/borrow-list.component';
+import { BookBorrowComponent } from './component/book-borrow/book-borrow.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,10 @@ import { SearchResultComponent } from './component/search-result/search-result.c
     RegistrationComponent,
     AccountDetailsComponent,
     SearchListComponent,
-    SearchResultComponent
+    SearchResultComponent,
+    UserListComponent,
+    BorrowListComponent,
+    BookBorrowComponent,
   ],
   imports: [
     BrowserModule,

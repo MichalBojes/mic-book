@@ -1,4 +1,4 @@
-<mat-card>
+<mat-card class="card-center-class">
   <div class="login-container">
     <form #loginForm="ngForm" (ngSubmit)="checkLogin()">
       <mat-card-header>
@@ -14,9 +14,10 @@
         <div>
           <mat-form-field>
             <input matInput placeholder="hasło" [type]="hide ? 'password' : 'text'" [(ngModel)]="password"
-                   required name="password">
-            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Ukryj hasło'"
-                    [attr.aria-pressed]="hide" (keyup.enter)="checkLogin()">
+                   required name="password" (keyup.enter)="checkLogin()">
+            <button mat-icon-button matSuffix (mousedown)="hide = false" (mouseup)="hide = true"
+                    [attr.aria-label]="'Ukryj hasło'"
+                    [attr.aria-pressed]="hide">
               <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
           </mat-form-field>
@@ -26,7 +27,7 @@
         <button mat-raised-button color="primary" type="submit"
                 [disabled]="!loginForm.form.valid">Zaloguj się
         </button>
-        <a mat-button routerLink="/book-list">Anuluj</a>
+        <a mat-button routerLink="/search-list">Anuluj</a>
       </mat-card-actions>
     </form>
   </div>

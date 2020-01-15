@@ -1,4 +1,4 @@
-<mat-card>
+<mat-card class="card-center-class">
   <div class="book-list-container">
     <mat-card-header>
       <mat-card-title>Lista Książek</mat-card-title>
@@ -8,11 +8,11 @@
       <mat-list>
         <mat-list-item style="margin-bottom: 30px" *ngFor="let book of books">
           <h3 mat-line>
-            <a mat-button (click)="goToEdit(book.id)">
+            <a mat-button (click)="goToEdit(book.id, book.numberOfAvailable)">
               <div>
                 <div style="display: inline"> {{book.title}} </div>
                 <div style="display: inline" *ngIf="book.otherTitle">({{book.otherTitle}})</div>
-                <div style="display: inline">  - {{book.authorName}} </div>
+                <div style="display: inline"> - {{book.authorName}} </div>
                 <div style="display: inline" *ngIf="book.publicationYear">{{book.publicationYear}}</div>
               </div>
               <div>
@@ -23,7 +23,8 @@
           </h3>
         </mat-list-item>
       </mat-list>
-      <button mat-mini-fab class="button-bottom" color="primary" aria-label="Dodaj publikację" routerLink="/book-add">
+      <button *ngIf="loginService.isUserAdmin()" mat-mini-fab class="button-bottom" color="primary"
+              aria-label="Dodaj publikację" routerLink="/book-add">
         <mat-icon>add_circle</mat-icon>
       </button>
     </mat-card-content>

@@ -1,6 +1,7 @@
 package com.micbook.app.micbook.controller;
 
 import com.micbook.app.micbook.dto.UserDTO;
+import com.micbook.app.micbook.model.StringResponse;
 import com.micbook.app.micbook.model.UserModel;
 import com.micbook.app.micbook.repository.UserRepository;
 import com.micbook.app.micbook.service.JwtUserDetailsService;
@@ -26,7 +27,9 @@ public class UsersController {
     @GetMapping("/users-list")
     @CrossOrigin(origins = "http://localhost:4200")
     public Collection<UserModel> usersList() {
-        return repository.findAll().stream()
+        return repository.
+                findAll()
+                .stream()
                 .collect(Collectors.toList());
     }
 
@@ -43,10 +46,23 @@ public class UsersController {
         return service.update(user);
     }
 
+    @DeleteMapping("/users")
+    @CrossOrigin(origins = "http://localhost:4200")
+    public UserDTO delete(@RequestBody UserDTO user) {
+        service.delete(user);
+        return user;
+    }
+
 
     @GetMapping("/users")
     @CrossOrigin(origins = "http://localhost:4200")
     public UserModel getUser(@RequestParam(name = "username") String username) {
         return repository.findByUsername(username);
+    }
+
+    @GetMapping(value = "/userRole")
+    @CrossOrigin(origins = "http://localhost:4200")
+    public StringResponse getUserRole(@RequestParam(name = "username") String username) {
+        return new StringResponse(repository.findByUsername(username).getStatus());
     }
 }

@@ -1,0 +1,27 @@
+[
+    {
+        "id": 1,
+        "name": "Chleb",
+        "count": 0,
+        "price": 3,
+        "color": "#BD8D31"
+    },
+    {
+        "id": 2,
+        "name": "Jaja",
+        "count": 0,
+        "price": 8,
+        "color": "#AA1199"
+    },
+    {
+        "id": 3,
+        "name": "Mleko",
+        "count": 0,
+        "price": 2.5
+    },
+    {
+        "id": 4,
+        "count": 0,
+        "price": 5
+    }
+]

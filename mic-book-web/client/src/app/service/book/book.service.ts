@@ -30,7 +30,7 @@ export class BookService {
   }
 
   search(queryString: string): Observable<any> {
-    let URL = this.BOOK_API + '/search?limit=10&query=' + queryString;
+    let URL = this.BOOK_API + '/search?limit=5&query=' + queryString;
     return this.http.get(URL);
   }
 
