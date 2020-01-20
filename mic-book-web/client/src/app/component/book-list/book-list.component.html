@@ -1,7 +1,10 @@
 <mat-card class="card-center-class">
   <div class="book-list-container">
     <mat-card-header>
-      <mat-card-title>Lista Książek</mat-card-title>
+      <mat-card-title>Lista Książek
+        <div *ngIf="loginService.isUserLoggedIn() && loginService.isUserAdmin()">(naciśnij aby edytować)</div>
+        <div *ngIf="loginService.isUserLoggedIn() && !loginService.isUserAdmin()">(naciśnij aby wypożyczyć)</div>
+      </mat-card-title>
     </mat-card-header>
 
     <mat-card-content>
@@ -15,7 +18,7 @@
                 <div style="display: inline"> - {{book.authorName}} </div>
                 <div style="display: inline" *ngIf="book.publicationYear">{{book.publicationYear}}</div>
               </div>
-              <div>
+              <div align="left">
                 <div style="display: inline">Ilość: {{book.amount}} </div>
                 <div style="display: inline"> Dostępne: {{book.numberOfAvailable}}</div>
               </div>

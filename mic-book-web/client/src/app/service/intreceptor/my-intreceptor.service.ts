@@ -17,7 +17,6 @@ export class MyIntreceptorService implements HttpInterceptor {
           Authorization: sessionStorage.getItem('token')
         }
       });
-      console.log(next)
       return next.handle(clonedRequest);
     } else {
       return next.handle(req);

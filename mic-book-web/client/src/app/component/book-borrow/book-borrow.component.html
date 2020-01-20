@@ -1,1 +1,55 @@
-<p>book-borrow works!</p>
+<mat-card class="card-center-class">
+  <div class="book-edit-container">
+    <form #bookForm="ngForm" (ngSubmit)="borrowBook()">
+      <mat-card-header>
+        <mat-card-title><h2>Wypożyczanie</h2></mat-card-title>
+
+      </mat-card-header>
+      <mat-card-content>
+
+        <div>
+          <mat-form-field style="width:360px !important">
+            <input matInput placeholder="Tytuł publikacji" [(ngModel)]="book.title"
+                   name="title" [readonly]="true" #title>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field style="width:360px !important">
+            <input matInput placeholder="Inny tytuł (tłumaczenie tytułu)" [(ngModel)]="book.otherTitle"
+                   name="otherTitle" [readonly]="true" #otherTitle>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field style="width:360px !important">
+            <input matInput placeholder="Autor" [(ngModel)]="book.authorName"
+                   name="authorName" [readonly]="true" #authorName>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field style="width:120px !important">
+            <input matInput placeholder="Ilość dostępnych" [(ngModel)]="book.numberOfAvailable"
+                   type="number" name="numberOfAvailable" [readonly]="true" #numberOfAvailable>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field>
+            <input matInput placeholder="Tematyka" [(ngModel)]="book.topic"
+                   name="topic" [readonly]="true" #topic>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Typ publikacji" [(ngModel)]="book.publicationType"
+                   name="publicationType" [readonly]="true" #publicationType>
+          </mat-form-field>
+        </div>
+
+      </mat-card-content>
+      Czy na pewno chcesz zarezerwować książkę?
+      <mat-card-actions>
+        <button mat-raised-button color="primary" type="submit"
+                [disabled]="!book.numberOfAvailable>0">Rezerwuj
+        </button>
+        <a mat-button routerLink="/search-list">Anuluj</a>
+      </mat-card-actions>
+    </form>
+  </div>
+</mat-card>

@@ -50,6 +50,7 @@ export class AuthenticationService {
 
   logOut() {
     sessionStorage.removeItem('username')
+    sessionStorage.removeItem('token')
     sessionStorage.removeItem('role')
   }
 }
