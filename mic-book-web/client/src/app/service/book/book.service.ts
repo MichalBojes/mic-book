@@ -30,7 +30,7 @@ export class BookService {
   }
 
   remove(id) {
-    return this.http.delete(this.BOOK_API + '/delete?id=' + id);
+    return this.http.delete(this.BOOK_API + '?id=' + id);
   }
 
   search(queryString: string): Observable<any> {

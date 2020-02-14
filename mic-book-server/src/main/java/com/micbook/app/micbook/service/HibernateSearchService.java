@@ -40,7 +40,8 @@ public class HibernateSearchService {
                 .fuzzy()
                 .onFields("title",
                         "otherTitle",
-                        "authorName")
+                        "authorName",
+                        "topic")
                 .matching(text)
                 .createQuery();
 
@@ -53,40 +54,7 @@ public class HibernateSearchService {
         List<Book> results = jpaQuery.getResultList();
 
         return results;
-    } // method search
+    }
 
-
-//    @Transactional
-//    public List<Book> fuzzySearch(String searchTerm) {
-//
-//        FullTextEntityManager fullTextEntityManager = Search.getFullTextEntityManager(entityManager);
-//
-//        QueryBuilder qb = fullTextEntityManager
-//                .getSearchFactory()
-//                .buildQueryBuilder()
-//                .forEntity(Book.class)
-//                .get();
-//
-//        Query luceneQuery = qb
-//                .keyword()
-//                .fuzzy()
-//                .withEditDistanceUpTo(1)
-//                .withPrefixLength(1)
-//                .onFields("title",
-//                        "otherTitle",
-//                        "author_name")
-//                .matching(searchTerm)
-//                .createQuery();
-//
-//        javax.persistence.Query jpaQuery = fullTextEntityManager.createFullTextQuery(luceneQuery, Book.class);
-//
-//        List<Book> BaseballCardList = null;
-//        try {
-//            BaseballCardList = jpaQuery.getResultList();
-//        } catch (NoResultException nre) {
-//
-//        }
-//        return BaseballCardList;
-//    }
 }
 

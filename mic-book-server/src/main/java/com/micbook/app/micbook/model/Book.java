@@ -45,6 +45,8 @@ public class Book {
     @NonNull
     private int amount;
 
+    @Field
+    @Analyzer(impl = KeywordAnalyzer.class)
     private String topic;
 
     @NonNull

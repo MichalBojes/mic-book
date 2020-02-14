@@ -3,7 +3,6 @@ package com.micbook.app.micbook.controller;
 import com.micbook.app.micbook.model.Book;
 import com.micbook.app.micbook.repository.BookRepository;
 import com.micbook.app.micbook.service.HibernateSearchService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
@@ -13,10 +12,8 @@ import java.util.stream.Collectors;
 @RestController
 public class BooksController {
 
-    //    @Autowired
     private BookRepository repository;
 
-    //    @Autowired
     private HibernateSearchService searchservice;
 
     public BooksController(BookRepository repository, HibernateSearchService searchservice) {
@@ -41,7 +38,7 @@ public class BooksController {
         return ksiazka;
     }
 
-    @DeleteMapping("/books/delete")
+    @DeleteMapping("/books")
     @CrossOrigin(origins = "http://localhost:4200")
     public void deleteBook(@RequestParam(name = "id") Long id) {
         repository.deleteById(id);

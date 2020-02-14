@@ -39,7 +39,6 @@ public class UsersController {
         return service.save(user);
     }
 
-
     @PutMapping("/users")
     @CrossOrigin(origins = "http://localhost:4200")
     public UserModel update(@RequestBody UserDTO user) {
@@ -52,7 +51,6 @@ public class UsersController {
         service.delete(user);
         return user;
     }
-
 
     @GetMapping("/users")
     @CrossOrigin(origins = "http://localhost:4200")

@@ -35,6 +35,15 @@
                    required name="age">
           </mat-form-field>
         </div>
+        <div>
+          <mat-form-field *ngIf="authservice.isUserAdmin()">
+            <mat-label>Typ publikacji</mat-label>
+            <mat-select [(value)]="user.status" required >
+              <mat-option value="U"> Czytelnik</mat-option>
+              <mat-option value="A"> Bibliotekarz</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
       </mat-card-content>
       <mat-card-actions>
         <button mat-raised-button color="primary" type="submit"

@@ -43,13 +43,15 @@
         </div>
 
       </mat-card-content>
-      Czy na pewno chcesz zarezerwować książkę?
-      <mat-card-actions>
-        <button mat-raised-button color="primary" type="submit"
-                [disabled]="!book.numberOfAvailable>0">Rezerwuj
-        </button>
-        <a mat-button routerLink="/search-list">Anuluj</a>
-      </mat-card-actions>
+      <div align="center">
+        Czy na pewno chcesz zarezerwować książkę?
+        <mat-card-actions>
+          <button mat-raised-button color="primary" type="submit"
+                  [disabled]="!book.numberOfAvailable>0">Rezerwuj
+          </button>
+          <a mat-button routerLink="/search-list">Anuluj</a>
+        </mat-card-actions>
+      </div>
     </form>
   </div>
 </mat-card>
