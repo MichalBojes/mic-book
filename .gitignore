@@ -62,3 +62,15 @@ _ReSharper*/
 #Nuget packages folder
 packages/
 /indexes/
+/mic-book-server/indexes/com.micbook.app.micbook.model.Book/_15.fdt
+/mic-book-server/indexes/com.micbook.app.micbook.model.Book/_15.fdx
+/mic-book-server/indexes/com.micbook.app.micbook.model.Book/_15.fnm
+/mic-book-server/indexes/com.micbook.app.micbook.model.Book/_15.nvd
+/mic-book-server/indexes/com.micbook.app.micbook.model.Book/_15.nvm
+/mic-book-server/indexes/com.micbook.app.micbook.model.Book/_15.si
+/mic-book-server/indexes/com.micbook.app.micbook.model.Book/_15_Lucene50_0.doc
+/mic-book-server/indexes/com.micbook.app.micbook.model.Book/_15_Lucene50_0.pos
+/mic-book-server/indexes/com.micbook.app.micbook.model.Book/_15_Lucene50_0.tim
+/mic-book-server/indexes/com.micbook.app.micbook.model.Book/_15_Lucene50_0.tip
+/mic-book-server/indexes/com.micbook.app.micbook.model.Book/segments_16
+/mic-book-server/indexes/com.micbook.app.micbook.model.Book/write.lock
