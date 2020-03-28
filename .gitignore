@@ -74,3 +74,5 @@ packages/
 /mic-book-server/indexes/com.micbook.app.micbook.model.Book/_15_Lucene50_0.tip
 /mic-book-server/indexes/com.micbook.app.micbook.model.Book/segments_16
 /mic-book-server/indexes/com.micbook.app.micbook.model.Book/write.lock
+/mic-book-web/client/package.json
+/mic-book-web/client/package-lock.json
