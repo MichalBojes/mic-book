@@ -53,7 +53,6 @@ public class JwtUserDetailsServiceTest {
         String name = "testName";
         UserDetails found = service.loadUserByUsername(name);
         assertEquals(found.getUsername(), name);
-
     }
 
     @Test
@@ -65,7 +64,6 @@ public class JwtUserDetailsServiceTest {
 
         UserModel saved = service.save(newUser);
         assertEquals(saved.getUsername(), name);
-
     }
 
     @Test
