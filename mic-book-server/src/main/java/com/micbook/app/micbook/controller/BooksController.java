@@ -38,6 +38,12 @@ public class BooksController {
         return ksiazka;
     }
 
+    @PostMapping("/books")
+    @CrossOrigin(origins = "http://localhost:4200")
+    public void addBook(@RequestBody Book book) {
+        repository.save(book);
+    }
+
     @DeleteMapping("/books")
     @CrossOrigin(origins = "http://localhost:4200")
     public void deleteBook(@RequestParam(name = "id") Long id) {
