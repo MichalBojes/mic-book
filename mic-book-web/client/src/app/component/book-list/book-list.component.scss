@@ -4,7 +4,11 @@
   bottom: 5%;
 }
 
-.card-center-class{
+.card-center-class {
   max-width: 800px;
   margin: auto;
+}
+
+book-list-container mat-card-header {
+  justify-content: flex-start;
 }

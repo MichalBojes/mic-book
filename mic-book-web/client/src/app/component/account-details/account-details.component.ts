@@ -53,7 +53,7 @@ export class AccountDetailsComponent implements OnInit {
   }
 
   deleteUser(user) {
-    console.log('testowanko')
+    console.log('user deletion')
     this.userservice.deleteUser(user)
     this.goBack()
   }

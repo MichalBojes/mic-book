@@ -11,9 +11,7 @@ import java.util.stream.Collectors;
 
 @RestController
 public class BooksController {
-
     private BookRepository repository;
-
     private HibernateSearchService searchservice;
 
     public BooksController(BookRepository repository, HibernateSearchService searchservice) {

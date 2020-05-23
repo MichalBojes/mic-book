@@ -15,13 +15,13 @@ import java.util.stream.Collectors;
 @RestController
 public class UsersController {
     private UserRepository repository;
-    private JwtUserDetailsService service;
+    private JwtUserDetailsService jwtUserDetailsService;
     @Autowired
     private PasswordEncoder bcryptEncoder;
 
     public UsersController(UserRepository repository, JwtUserDetailsService service) {
         this.repository = repository;
-        this.service = service;
+        this.jwtUserDetailsService = service;
     }
 
     @GetMapping("/users-list")
@@ -36,19 +36,19 @@ public class UsersController {
     @PostMapping("/users")
     @CrossOrigin(origins = "http://localhost:4200")
     public UserModel create(@RequestBody UserDTO user) {
-        return service.save(user);
+        return jwtUserDetailsService.save(user);
     }
 
     @PutMapping("/users")
     @CrossOrigin(origins = "http://localhost:4200")
     public UserModel update(@RequestBody UserDTO user) {
-        return service.update(user);
+        return jwtUserDetailsService.update(user);
     }
 
     @DeleteMapping("/users")
     @CrossOrigin(origins = "http://localhost:4200")
     public UserDTO delete(@RequestBody UserDTO user) {
-        service.delete(user);
+        jwtUserDetailsService.delete(user);
         return user;
     }
 

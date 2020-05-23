@@ -1,5 +1,6 @@
 package com.micbook.app.micbook.model;
 
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -10,6 +11,7 @@ import java.util.Date;
 @Entity
 @Data
 @NoArgsConstructor
+@Builder
 public class Reservation {
     @Id
     @GeneratedValue
