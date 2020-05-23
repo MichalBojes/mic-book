@@ -26,7 +26,7 @@ export class BookService {
   }
 
   borrowBook(book, login) {
-    return this.http.post('/borrow/' + login, book);
+    return this.http.post(this.API + '/borrow/' + login, book);
   }
 
   remove(id) {

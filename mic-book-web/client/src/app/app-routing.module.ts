@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {Routes, RouterModule} from '@angular/router';
+import {RouterModule, Routes} from '@angular/router';
 import {BookListComponent} from './component/book-list/book-list.component';
 import {BookEditComponent} from './component/book-edit/book-edit.component';
 import {LoginComponent} from './component/login/login.component';
@@ -10,6 +10,7 @@ import {AccountDetailsComponent} from "./component/account-details/account-detai
 import {SearchListComponent} from "./component/search-list/search-list.component";
 import {BookBorrowComponent} from "./component/book-borrow/book-borrow.component";
 import {UserListComponent} from "./component/user-list/user-list.component";
+import {BorrowListComponent} from "./component/borrow-list/borrow-list.component";
 
 const routes: Routes = [
   {
@@ -67,6 +68,11 @@ const routes: Routes = [
   {
     path: 'edit-user/:id',
     component: AccountDetailsComponent,
+    canActivate: [AuthInterceptorService]
+  },
+  {
+    path: 'borrow-list/:login',
+    component: BorrowListComponent,
     canActivate: [AuthInterceptorService]
   },
 
