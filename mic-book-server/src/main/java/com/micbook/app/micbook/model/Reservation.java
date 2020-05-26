@@ -1,5 +1,6 @@
 package com.micbook.app.micbook.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -15,10 +16,12 @@ public class Reservation {
     @GeneratedValue
     private Long id;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "userId", referencedColumnName = "id")
     private UserModel user;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "bookId", referencedColumnName = "id")
     private Book book;

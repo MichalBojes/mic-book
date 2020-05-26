@@ -1,5 +1,6 @@
 package com.micbook.app.micbook.controller;
 
+import com.micbook.app.micbook.dto.ReservationDTO;
 import com.micbook.app.micbook.model.Book;
 import com.micbook.app.micbook.model.Reservation;
 import com.micbook.app.micbook.repository.BookRepository;
@@ -13,6 +14,7 @@ import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
@@ -47,19 +49,36 @@ public class BorrowsController {
 
     @GetMapping("/borrow/{username}")
     @CrossOrigin(origins = "http://localhost:4200")
-    public List<Reservation> getUserBorows(@PathVariable(value = "username") String username) {
-        return reservationRepository.findAllByUser(userRepository.findByUsername(username))
-                .stream()
-                .filter(Reservation::isEnded)
+    public List<ReservationDTO> getUserBorows(@PathVariable(value = "username") String username) {
+        List<Reservation> found = reservationRepository.findAll();
+
+        return found.stream()
+                .filter(e -> e.getUser().getUsername().equals(username))
+                .filter(e -> !e.isEnded())
                 .peek(e -> e.setBill(countBill(e)))
+                .map(this::mapToDTO)
                 .collect(Collectors.toList());
+    }
+
+    private ReservationDTO mapToDTO(Reservation reservation) {
+        return ReservationDTO.builder()
+                .id(reservation.getId())
+                .bookId(reservation.getBook().getId())
+                .title(reservation.getBook().getTitle())
+                .authorName(reservation.getBook().getAuthorName())
+                .bill(reservation.getBill())
+                .reservationDate(reservation.getReservationDate())
+                .lendDate(reservation.getLendDate())
+                .returnDate(reservation.getReturnDate())
+                .isEnded(reservation.isEnded())
+                .build();
     }
 
     private float countBill(Reservation reservation) {
         ZoneId defaultZoneId = ZoneId.systemDefault();
         LocalDate now = LocalDate.now();
         LocalDate returnDate = reservation.getReturnDate().toInstant().atZone(defaultZoneId).toLocalDate();
-        if (returnDate.isAfter(now)) {
+        if (now.isAfter(returnDate)) {
             long between = ChronoUnit.DAYS.between(returnDate, now);
             return between * 0.30f;
         }
@@ -68,8 +87,12 @@ public class BorrowsController {
 
     @PutMapping("/borrow")
     @CrossOrigin(origins = "http://localhost:4200")
-    public void returnBook(@RequestBody Reservation reservation) {
-        reservation.setEnded(true);
-        reservationRepository.save(reservation);
+    public void returnBook(@RequestBody ReservationDTO reservationDTO) {
+        Optional<Reservation> reservationEntity = reservationRepository.findById(reservationDTO.getId());
+        if (reservationEntity.isPresent()) {
+            Reservation reservation = reservationEntity.get();
+            reservation.setEnded(true);
+            reservationRepository.save(reservation);
+        }
     }
 }

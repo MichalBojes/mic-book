@@ -11,5 +11,7 @@ import java.util.List;
 @RepositoryRestResource
 @CrossOrigin(origins = "http://localhost:4200")
 public interface ReservationRepository extends JpaRepository<Reservation, Long> {
+    List<Reservation> findAll();
+
     List<Reservation> findAllByUser(UserModel user);
 }

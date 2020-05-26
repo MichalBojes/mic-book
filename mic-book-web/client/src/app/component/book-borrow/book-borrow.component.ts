@@ -4,6 +4,7 @@ import {Subscription} from "rxjs";
 import {ActivatedRoute, Router} from "@angular/router";
 import {BookService} from "../../service/book/book.service";
 import {AuthenticationService} from "../../service/authentication/authentication.service";
+import {ReservationsService} from "../../service/reservations/reservations.service";
 
 @Component({
   selector: 'app-book-borrow',
@@ -31,6 +32,7 @@ export class BookBorrowComponent implements OnInit {
               private router: Router,
               private bookService: BookService,
               private authservice: AuthenticationService,
+              private reservationsService: ReservationsService
   ) {
   }
 
@@ -55,7 +57,7 @@ export class BookBorrowComponent implements OnInit {
 
   borrowBook() {
     let userLogin = this.authservice.getUserLogin();
-    this.bookService.borrowBook(this.book, userLogin).subscribe(
+    this.reservationsService.borrowBook(this.book, userLogin).subscribe(
       data => {
         this.router.navigate(['/borrow-list/' + userLogin])
       }
