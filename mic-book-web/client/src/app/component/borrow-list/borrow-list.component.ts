@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from "../../service/user/user.service";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {AuthenticationService} from "../../service/authentication/authentication.service";
 import {ReservationsService} from "../../service/reservations/reservations.service";
 
@@ -12,8 +12,10 @@ import {ReservationsService} from "../../service/reservations/reservations.servi
 export class BorrowListComponent implements OnInit {
 
   reservations: Array<any>;
+  login: String;
 
   constructor(
+    private route: ActivatedRoute,
     private userService: UserService,
     private router: Router,
     private loginService: AuthenticationService,
@@ -22,14 +24,21 @@ export class BorrowListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.reservationsService.getAllReservations(this.loginService.getUserLogin()).subscribe(data => {
+    this.route.params.subscribe(params => {
+      this.login = params['login']
+      this.getReservations();
+    });
+  }
+
+  private getReservations() {
+    this.reservationsService.getAllReservations(this.login).subscribe(data => {
       this.reservations = data;
     });
   }
 
   endReservation(reservation) {
     if (this.loginService.isUserAdmin()) {
-      this.reservationsService.endReservation(reservation);
+      this.reservationsService.endReservation(reservation).subscribe(data => this.getReservations());
     }
   }
 

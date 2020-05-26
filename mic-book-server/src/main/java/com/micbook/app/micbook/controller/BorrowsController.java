@@ -85,10 +85,10 @@ public class BorrowsController {
         return 0.0f;
     }
 
-    @PutMapping("/borrow")
+    @GetMapping("/borrow/reservation/{id}")
     @CrossOrigin(origins = "http://localhost:4200")
-    public void returnBook(@RequestBody ReservationDTO reservationDTO) {
-        Optional<Reservation> reservationEntity = reservationRepository.findById(reservationDTO.getId());
+    public void returnBook(@PathVariable(value = "id") Long reservationId) {
+        Optional<Reservation> reservationEntity = reservationRepository.findById(reservationId);
         if (reservationEntity.isPresent()) {
             Reservation reservation = reservationEntity.get();
             reservation.setEnded(true);

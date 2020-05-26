@@ -16,8 +16,9 @@ export class ReservationsService {
     return this.http.post(this.BORROW_API + '/' + login, book);
   }
 
-  endReservation(book) {
-    return this.http.put(this.BORROW_API, book);
+  endReservation(reservation) {
+    console.log("end of reservation: ", reservation.id);
+    return this.http.get(this.BORROW_API + "/reservation/" + reservation.id);
   }
 
   getAllReservations(login): Observable<any> {
