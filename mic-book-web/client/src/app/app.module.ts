@@ -24,6 +24,7 @@ import {SearchResultComponent} from './component/search-result/search-result.com
 import { UserListComponent } from './component/user-list/user-list.component';
 import { BorrowListComponent } from './component/borrow-list/borrow-list.component';
 import { BookBorrowComponent } from './component/book-borrow/book-borrow.component';
+import { ReservationsComponent } from './component/reservations/reservations.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { BookBorrowComponent } from './component/book-borrow/book-borrow.compone
     UserListComponent,
     BorrowListComponent,
     BookBorrowComponent,
+    ReservationsComponent,
   ],
   imports: [
     BrowserModule,

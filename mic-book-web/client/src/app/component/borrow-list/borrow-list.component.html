@@ -6,12 +6,12 @@
 
     <mat-card-content>
       <mat-list>
-        <mat-list-item *ngFor="let reservation of reservations">
+        <mat-list-item style="margin-bottom: 30px" *ngFor="let reservation of reservations">
           <h3 mat-line>
             <a mat-button (click)="endReservation(reservation)">
-              <div style="max-width: 780px;">
+              <div style="max-width: 780px;" align="left">
                 <div style="display: inline-block; overflow-wrap: break-word;"> {{reservation.title}} </div>
-                <div style="display: inline-block; overflow-wrap: break-word;"> - {{reservation.authorName}} </div>
+                <div style="display: inline-block; overflow-wrap: break-word;">  - {{reservation.authorName}} </div>
               </div>
               <div align="left">
                 <div style="display: inline"> data

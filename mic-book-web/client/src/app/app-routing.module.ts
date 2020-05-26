@@ -11,6 +11,7 @@ import {SearchListComponent} from "./component/search-list/search-list.component
 import {BookBorrowComponent} from "./component/book-borrow/book-borrow.component";
 import {UserListComponent} from "./component/user-list/user-list.component";
 import {BorrowListComponent} from "./component/borrow-list/borrow-list.component";
+import {ReservationsComponent} from "./component/reservations/reservations.component";
 
 const routes: Routes = [
   {
@@ -73,6 +74,11 @@ const routes: Routes = [
   {
     path: 'borrow-list/:login',
     component: BorrowListComponent,
+    canActivate: [AuthInterceptorService]
+  },
+  {
+    path: 'reservations',
+    component: ReservationsComponent,
     canActivate: [AuthInterceptorService]
   },
 
